@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Book Details</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous" />
+<link rel="stylesheet" type="text/css" href="/css/book_view.css">
+
+</head>
+<body>
+	<div th:include="navbar :: my-fragment"></div>
+<br>
+	<div class="container-fluid">
+    <form class="form-inline my-2 my-lg-0 w-100" action="/home/search" method="GET">
+        <input class="form-control mr-sm-2" style="width: 80%; margin-left: 80px" type="search" placeholder="Tìm kiếm sách..." name="txt">
+        <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Tìm kiếm</button>
+    </form>
+</div>
+	<br>
+	<div class="container">
+		<!-- <h1>Book Details</h1> -->
+		<div class="book-details">
+			<div class="book-details-image">
+				<img th:src="${book.image}" alt="Ảnh" />
+			</div>
+			<div class="book-details-info">
+				<h1 th:text="${book.title}"></h1>
+				<p style="font-size: 25px">
+					<strong>Tác giả:</strong> <span th:text="${book.author}"></span>
+				</p>
+				<!-- <p>
+					<strong>Đã bán:</strong> <span th:text="${book.quantitySold}"></span>
+				</p> -->
+				<p>
+					<strong>Ngày xuất bản:</strong> <span th:text="${book.date}"></span>
+				</p>
+				<p>
+					<strong>Số trang:</strong> <span th:text="${book.pagesNumber}"></span>
+				</p>
+				<p>
+					<span th:text="${book.price}" class="book-price"></span> <strong
+						style="color: red; font-size: 25px; text-decoration: underline;">đ</strong>
+
+				</p>
+				
+				<form action="/bookings" method="post" th:object="${booking}">
+					<input type="hidden" name="bookId" th:value="${book.id}">
+
+					<div>
+						<label for="quantity">Số lượng:</label> <input type="number"
+							id="quantity" name="quantity" min="1" value="1" style="width: 50px;">
+					</div>
+					<div class="book-details-buy">
+						<a th:href="@{/account/login}" class="btn btn-primary"
+							th:if="${role_loggedIn == null}">Đặt mua</a>
+						<button class="btn btn-primary" type="submit"
+							th:if="${role_loggedIn != null}"  onclick="return confirmBooking();">Đặt mua</button>
+					</div>
+				</form>
+
+			</div>
+		</div>
+		
+		<br>
+		
+		<div class="book-details-description">
+			<h3>Mô tả sản phẩm:</h3>
+			<p th:text="${book.description}"></p>
+		</div>
+
+		<div class="book-details-rating">
+			<div class="book-details-comments">
+				<h3>Bình luận:</h3>
+
+				<ul>
+					<li th:each="comment : ${comments}" class="comment-container">
+						<p class="user">
+							<span th:text="${comment.user.fullname}"></span>
+						</p>
+						<p class="rating">
+							Đánh giá: <span th:text="${comment.star}"></span>/5 <span>&#9733;</span>
+						</p>
+						<p class="content">
+							<span th:text="${comment.content}"></span>
+						</p> 
+						<a
+						th:href="@{/comments/delete/{bookId}/{commentId}(bookId=${book.id}, commentId=${comment.id})}"
+						class="btn btn-danger delete-button"
+						th:if="${role_loggedIn != null && id_loggedIn == comment.user.id}"  onclick="return confirmDelete();"
+						 >Xóa bình luận</a>
+							
+							
+							
+
+						<hr>
+					</li>
+				</ul>
+
+
+				<form action="/comments/add" method="post">
+					<div>
+						<label for="star">Đánh giá sao:</label> <select id="star"
+							name="star">
+							<option value="1">1 sao</option>
+							<option value="2">2 sao</option>
+							<option value="3">3 sao</option>
+							<option value="4">4 sao</option>
+							<option value="5">5 sao</option>
+						</select>
+					</div>
+
+					<div>
+						<label for="content">Nội dung:</label>
+						<textarea id="content" name="content" rows="4" cols="50"></textarea>
+					</div>
+
+					<input type="hidden" name="bookId" th:value="${book.id}"> <a
+						th:href="@{/account/login}" class="btn btn-primary"
+						th:if="${role_loggedIn == null}">Gửi bình luận</a>
+					<button class="btn btn-primary" type="submit"
+						th:if="${role_loggedIn != null}">Gửi bình luận</button>
+
+				</form>
+			</div>
+		</div>
+ 
+	</div>
+	
+	<br>
+	<div th:replace="footer.html :: my-fragment"></div>
+</body>
+
+<script>
+function confirmDelete() {
+    var result = confirm("Bạn có muốn xóa bình luận không?");
+    if (result) {
+        return true; // Nếu chọn "OK", tiếp tục xóa
+    } else {
+        return false; // Nếu chọn "Cancel", không thực hiện xóa
+    }
+}
+
+function confirmBooking() {
+    var result = confirm("Bạn có muốn đặt sách không?");
+    if (result) {
+        return true; // Nếu chọn "OK", tiếp tục xóa
+    } else {
+        return false; // Nếu chọn "Cancel", không thực hiện xóa
+    }
+}
+</script>
+
+
+</html>

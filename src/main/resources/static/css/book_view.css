@@ -1,0 +1,144 @@
+.book-details {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	margin-top: 20px;
+}
+
+.book-details-image {
+	flex: 0 0 25%;
+	margin-right: 20px;
+}
+
+.book-details-image img {
+	width: 100%;
+	height: auto;
+}
+
+.book-details-info {
+	flex: 0 0 70%;
+}
+
+.book-details-info h2 {
+	font-size: 24px;
+	margin-bottom: 10px;
+}
+
+.book-details-info p {
+	margin-bottom: 5px;
+}
+
+.book-details-description {
+	margin-top: 20px;
+}
+
+.book-details-rating {
+	margin-top: 20px;
+}
+
+.book-details-comments {
+	margin-top: 20px;
+}
+
+.book-price {
+	color: red;
+	font-weight: bold;
+	font-size: 30px;
+}
+
+.book-details-rating {
+	margin-top: 20px;
+}
+
+.book-details-comments {
+	background-color: #f8f8f8;
+	padding: 20px;
+	border-radius: 5px;
+}
+
+.book-details-comments h3 {
+	font-size: 18px;
+	margin-bottom: 10px;
+}
+
+.book-details-comments ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+.book-details-comments li {
+	margin-bottom: 10px;
+}
+
+.book-details-comments p {
+	margin: 0;
+}
+
+.book-details-comments hr {
+	border: none;
+	border-top: 1px solid #ddd;
+	margin: 10px 0;
+}
+
+.book-details-comments form {
+	margin-top: 20px;
+}
+
+.book-details-comments label {
+	display: block;
+	margin-bottom: 5px;
+}
+
+.book-details-comments select, .book-details-comments textarea {
+	width: 100%;
+	padding: 5px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+}
+
+.book-details-comments button {
+	padding: 10px 20px;
+	background-color: #337ab7;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.comment-container {
+	border: 1px solid #ccc;
+	padding: 10px;
+	margin-bottom: 10px;
+	position: relative;
+}
+
+.comment-container p {
+	margin: 0;
+	padding: 0;
+}
+
+.comment-container .user {
+	font-weight: bold;
+}
+
+.comment-container .rating {
+	color: #f8b700;
+}
+
+.comment-container .content {
+	margin-top: 5px;
+}
+
+.delete-button {
+  position: absolute;
+  top: 15px;
+  right: 5px;
+}
+
+.book-details-description {
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+

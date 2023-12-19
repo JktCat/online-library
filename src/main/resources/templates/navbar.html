@@ -1,0 +1,60 @@
+
+<div th:fragment="my-fragment">
+
+	<style>
+.button-like-link {
+	display: inline-block;
+	padding-right: 10px;
+	background-color: transparent;
+	border: none;
+	color: #fff;
+	cursor: pointer;
+}
+</style>
+
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+		<!-- Brand -->
+		<a class="navbar-brand" th:href="@{/home}">Online Library</a>
+
+		<!-- Toggler/collapsibe Button -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<!-- Navbar links -->
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" th:href="@{/books}" th:if="${role_loggedIn == 'ADMIN'}">Quản
+						lý sách</a></li>
+						
+				<li class="nav-item"><a class="nav-link" th:href="@{/account/login}"
+				th:if="${role_loggedIn == null}"	>Sách đã đặt</a></li>		
+						
+				<li class="nav-item"><a class="nav-link" th:href="@{/bookings}"
+				th:if="${role_loggedIn != null}"	>Sách đã đặt</a></li>
+
+			</ul>
+
+			<div class="ml-auto" th:if="${session.loggedInUser == null}">
+				<a th:href="@{/account/login}">
+					<button class="btn btn-xs button-login">Đăng nhập</button>
+				</a> <a th:href="@{/account/sign-up}">
+					<button class="btn btn-xs button-login">Đăng ký</button>
+				</a>
+			</div>
+
+			<div th:if="${session.loggedInUser != null}" class="ml-auto">
+
+				<p class="button-like-link"
+					th:text="'Xin chào, ' + ${fullname_loggedIn}   "
+					style="color: white;"></p>
+				<a th:href="@{/account/logout}">
+					<button class="btn btn-xs button-login">Đăng xuất</button>
+				</a>
+			</div>
+
+		</div>
+	</nav>
+
+</div>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Quản lý sách</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+</head>
+
+<body>
+
+	<div th:include="navbar :: my-fragment"></div>
+	<br>
+
+	<div class="container">
+		<div class="row">
+			<h1>List Books</h1>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-3">
+				<!-- <a th:href="@{/books/new}" class="btn btn-primary btn-sm mb-3">Add
+					Book</a> -->
+
+				<a th:href="@{books/edit/{id} (id=-1) }" class="btn btn-primary"
+					th:if="${role_loggedIn == 'ADMIN'}">Add Book</a>
+			</div>
+			<br> <br>
+		</div>
+
+		<table class="table table-striped table-bordered">
+			<thead class="table-dark">
+				<th>Tiêu đề</th>
+				<th>Tác giả</th>
+				<th>Thể loại</th>
+				<th>Ngày phát hành</th>
+				<th>Số trang</th>
+				<th>Số lượng đã bán</th>
+				<th><p th:if="${role_loggedIn == 'ADMIN'}">Action</p></th>
+
+			</thead>
+
+			<tbody>
+				<tr th:each="book : ${books}">
+					<td th:text="${book.title}"></td>
+					<td th:text="${book.author}"></td>
+					<td th:text="${book.category}"></td>
+					<!-- <td th:text="${book.date}"></td> -->
+					<td th:text="${#dates.format(book.date, 'yyyy-MM-dd')}">
+					<td th:text="${book.pagesNumber}"></td>
+					<td th:text="${book.quantitySold}"></td>
+					<td><a th:href="@{books/edit/{id} (id=${book.id}) }"
+						class="btn btn-primary" th:if="${role_loggedIn == 'ADMIN'}">View</a>
+						<a th:href="@{books/delete/{id}(id=${book.id})}"
+						class="btn btn-danger" th:if="${role_loggedIn == 'ADMIN'}" onclick="return confirmDelete();">Delete</a>
+						
+						<!-- <a th:href="@{books/edit/{id} (id=${book.id}) }" class="btn btn-primary">Update</a> 
+					<a th:href="@{books/delete/{id}(id=${book.id})}" class="btn btn-danger">Delete</a> -->
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<br>
+	<div th:replace="footer.html :: my-fragment"></div>
+</body>
+
+<script>
+function confirmDelete() {
+    var result = confirm("Bạn có muốn xóa sách không?");
+    if (result) {
+        return true; // Nếu chọn "OK", tiếp tục xóa
+    } else {
+        return false; // Nếu chọn "Cancel", không thực hiện xóa
+    }
+}
+</script>
+
+</html>

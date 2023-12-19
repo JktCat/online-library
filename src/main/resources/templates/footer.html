@@ -1,0 +1,52 @@
+
+<footer th:fragment="my-fragment">
+
+	<style>
+	
+footer {
+	padding: 20px;
+	text-align: center;
+	background-color: black;
+	color: white;
+	padding: 20px;
+	
+	
+}
+
+/* .container {
+	max-width: 960px;
+	margin: 0 auto;
+} */
+
+.footer-links li {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+.footer-links li a {
+	color: #333;
+	text-decoration: none;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.container {
+  flex: 1;
+}
+</style>
+
+	<div class="container">
+		<p>&copy; 2023 Your Library. All rights reserved.</p>
+		<ul class="footer-links">
+			<li><a href="#">About Us</a></li>
+			<li><a href="#">Terms and Conditions</a></li>
+			<li><a href="#">Privacy Policy</a></li>
+			<li><a href="#">Contact Us</a></li>
+		</ul>
+	</div>
+</footer>

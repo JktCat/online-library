@@ -1,0 +1,33 @@
+.card {
+	margin-bottom: 20px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+	width: 100%;
+	height: auto;
+}
+
+.card .title {
+	padding: 10px;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.card .author {
+	padding: 10px;
+	font-size: 14px;
+	color: #888;
+}
+
+.search-form .form-control {
+	width: 100%;
+}
+
+/* Responsive layout for small devices */
+@media ( max-width : 768px) {
+	.col-md-4 {
+		flex: 0 0 100%;
+		max-width: 100%;
+	}
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Đăng nhập</title>
+<link rel="stylesheet" type="text/css" href="/css/login_signup.css">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous" />
+</head>
+<body>
+
+	<div th:include="navbar :: my-fragment"></div>
+	<div class="login-signup">
+		<h1>Đăng nhập</h1>
+		<form th:action="@{/account/login}" method="POST">
+			<label for="username">Tài khoản:</label>
+			<input type="text" id="username" name="username" placeholder="Nhập tài khoản" required> 
+			<label for="password">Mật khẩu:</label>
+			<input type="password" id="password" name="password" placeholder="Nhập mật khẩu" required>
+			<p th:if="${error}" class="error" th:text="${error}" style="color: red;"></p>
+			<input type="submit" value="Đăng nhập">
+			<p>
+				Bạn chưa có tài khoản? <a href="/account/sign-up">Đăng ký</a>
+			</p>
+		</form>
+	</div>
+
+
+</body>
+</html>

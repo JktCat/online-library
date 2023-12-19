@@ -1,0 +1,15 @@
+.form-group-1 {
+	display: inline-block;
+}
+
+.image-container {
+	width: 300px;
+	height: 300px;
+	overflow: hidden;
+	margin-bottom: 10px;
+}
+
+.image-container img {
+	width: 100%;
+	height: auto;
+}
